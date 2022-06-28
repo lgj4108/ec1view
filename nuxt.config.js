@@ -37,10 +37,10 @@ export default {
   ],
   axios: {
     baseURL: 'http://localhost',
-    proxy: true
+    proxy: false
   },
   proxy: {
-    '/product': 'localhost'
+    '/': {target: 'http://localhost:80', pathRewrite: {'^/': ''}},
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
