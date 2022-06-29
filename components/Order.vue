@@ -37,11 +37,13 @@
       </b-form>
       <b-form>
         <b-form-group
-          label="배송비"
-        > {{ calculateCost }} </b-form-group>
+          label="배송비">
+          {{ calculateCost }}
+          <b-btn @click="getDeliveryCost">배송비조회</b-btn>
+        </b-form-group>
       </b-form>
       <b-form>
-        <b-btn @click="getDeliveryCost">배송비조회</b-btn>
+
         <b-btn>혜택조회</b-btn>
         <b-btn @click="calculateAmt">금액계산</b-btn>
       </b-form>
@@ -92,8 +94,11 @@ export default {
       this.costs = await this.$axios.$get('/delivery/getDeliveryCost');
     },
     calculateAmt() {
+
+    },
+    setOrderForm() {
       const orderProducts = this.selectedProductType === '10' ? this.checkedProduct : Array.of(this.selectedProduct);
-      console.log(orderProducts);
+      this.orderForm.orderProducts = orderProducts;
     }
   },
 }
